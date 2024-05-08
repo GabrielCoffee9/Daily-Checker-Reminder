@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'item.dart';
@@ -26,32 +27,9 @@ Future<List<Item>> loadItems() async {
   final json = prefs.getString('items');
   if (json == null) return [];
   final itemsList = jsonDecode(json) as List<dynamic>;
-  // final today =
-  //     DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
 
-  // final todayActivities = await loadActivitiesFromDate(today);
-
-  // if (todayActivities.isNotEmpty) dailyActivities[today] = todayActivities;
   return itemsList.map((item) => Item.fromJson(item)).toList();
 }
-
-// Carregar atividades do SharedPreferences
-// void loadAllDaysActivities() async {
-//   final prefs = await SharedPreferences.getInstance();
-//   final json = prefs.getString('daily_activities_');
-
-//   if (json != null) {
-//     dailyActivities = jsonDecode(json) as Map<DateTime, List<Item>>;
-
-//     for (var date in dailyActivities.keys) {
-//       dailyActivities[date] = dailyActivities[date]!
-//           .map<Item>((item) => Item.fromJson(item as Map<String, dynamic>))
-//           .toList();
-//     }
-//   }
-
-//   debugPrint(dailyActivities.toString());
-// }
 
 Future<List<Item>> loadActivitiesFromDate(DateTime date) async {
   final prefs = await SharedPreferences.getInstance();
@@ -68,10 +46,30 @@ Future<List<Item>> loadActivitiesFromDate(DateTime date) async {
   return itemsList.map((item) => Item.fromJson(item)).toList();
 }
 
-// Salvar atividades no SharedPreferences
 void saveActivitiesDay(DateTime day) async {
   final prefs = await SharedPreferences.getInstance();
   final json = dailyActivities[day]!.map((item) => item.toJson()).toList();
   await prefs.setString(
       'daily_activities_${day.millisecondsSinceEpoch}', jsonEncode(json));
+}
+
+void saveReminder(String reminderName, TimeOfDay time) async {
+  final prefs = await SharedPreferences.getInstance();
+  final hour = time.hour;
+  final minute = time.minute;
+
+  await prefs.setStringList(reminderName, [hour.toString(), minute.toString()]);
+}
+
+Future<TimeOfDay?> loadReminder(String reminderName) async {
+  final prefs = await SharedPreferences.getInstance();
+  final stringList = prefs.getStringList(reminderName);
+
+  if (stringList != null && stringList.length == 2) {
+    final instance = TimeOfDay(
+        hour: int.tryParse(stringList[0])!,
+        minute: int.tryParse(stringList[1])!);
+    return instance;
+  }
+  return null;
 }

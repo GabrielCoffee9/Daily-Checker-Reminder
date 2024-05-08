@@ -42,6 +42,17 @@ class _CalendarPageState extends State<CalendarPage> {
     return Column(
       children: [
         TableCalendar(
+          calendarStyle: CalendarStyle(
+            rangeHighlightColor: Colors.pink[200]!,
+            todayDecoration: BoxDecoration(
+              color: Colors.pink[200]!,
+              shape: BoxShape.circle,
+            ),
+            selectedDecoration: BoxDecoration(
+              color: Colors.pink[600]!,
+              shape: BoxShape.circle,
+            ),
+          ),
           calendarFormat: _calendarFormat,
           onFormatChanged: (format) {
             setState(() {

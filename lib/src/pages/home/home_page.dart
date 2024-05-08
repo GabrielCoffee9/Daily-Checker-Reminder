@@ -92,6 +92,7 @@ class _HomePageState extends State<HomePage> {
               ? Padding(
                   padding: const EdgeInsets.only(bottom: 20.0),
                   child: FloatingActionButton(
+                    heroTag: 'floatingClear',
                     onPressed: () {
                       showDialog(
                         context: context,
@@ -125,6 +126,7 @@ class _HomePageState extends State<HomePage> {
                 )
               : const Text(''),
           FloatingActionButton(
+            heroTag: 'floatingAdd',
             onPressed: () {
               showDialog(
                 context: context,
