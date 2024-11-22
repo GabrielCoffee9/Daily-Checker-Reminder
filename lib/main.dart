@@ -1,9 +1,9 @@
-import 'package:daily_checker_reminder/src/classes/local_notifications.dart';
 import 'package:flutter/material.dart';
-
-import 'src/app_widget.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
+
+import 'src/app_widget.dart';
+import 'src/classes/local_notifications.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

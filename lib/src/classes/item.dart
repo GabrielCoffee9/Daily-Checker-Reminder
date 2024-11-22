@@ -9,15 +9,12 @@ class Item {
     }
   }
 
-  // Converte Item para JSON
   Map<String, dynamic> toJson() => {
         'text': text,
         'checked': checked,
-        'doneTime': doneTime
-            ?.millisecondsSinceEpoch, // Converte DateTime para timestamp
+        'doneTime': doneTime?.millisecondsSinceEpoch,
       };
 
-  // Converte JSON para Item
   factory Item.fromJson(Map<String, dynamic> json) => Item(
         text: json['text'],
         checked: json['checked'] as bool,

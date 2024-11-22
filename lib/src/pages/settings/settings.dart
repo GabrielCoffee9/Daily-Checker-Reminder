@@ -102,6 +102,23 @@ class _SettingsPageState extends State<SettingsPage> {
                       labelText: 'First Daily Reminder',
                       border: OutlineInputBorder(),
                     ),
+                    onTap: () async {
+                      final result = await _selectedTime(
+                        firstReminderKey,
+                        _timeOfDay1,
+                        _time1Controller,
+                      );
+                      if (result != null) {
+                        _timeOfDay1 = result;
+                        if (_activeDailyReminder1 ?? false) {
+                          LocalNotifications.cancelNotification(1);
+                          LocalNotifications.setDailyScheduleNotification(
+                            id: 1,
+                            timeOfDay: _timeOfDay1,
+                          );
+                        }
+                      }
+                    },
                   ),
                 ),
                 Checkbox(
@@ -120,26 +137,6 @@ class _SettingsPageState extends State<SettingsPage> {
                         LocalNotifications.cancelNotification(1);
                       }
                     }),
-                IconButton(
-                  onPressed: () async {
-                    final result = await _selectedTime(
-                      firstReminderKey,
-                      _timeOfDay1,
-                      _time1Controller,
-                    );
-                    if (result != null) {
-                      _timeOfDay1 = result;
-                      if (_activeDailyReminder1 ?? false) {
-                        LocalNotifications.cancelNotification(1);
-                        LocalNotifications.setDailyScheduleNotification(
-                          id: 1,
-                          timeOfDay: _timeOfDay1,
-                        );
-                      }
-                    }
-                  },
-                  icon: const Icon(Icons.notifications_on),
-                ),
               ],
             ),
             const SizedBox(height: 16.0),
@@ -154,6 +151,23 @@ class _SettingsPageState extends State<SettingsPage> {
                       labelText: 'Second Daily Reminder',
                       border: OutlineInputBorder(),
                     ),
+                    onTap: () async {
+                      final result = await _selectedTime(
+                        secondReminderKey,
+                        _timeOfDay2,
+                        _time2Controller,
+                      );
+                      if (result != null) {
+                        _timeOfDay2 = result;
+                        if (_activeDailyReminder2 ?? false) {
+                          LocalNotifications.cancelNotification(2);
+                          LocalNotifications.setDailyScheduleNotification(
+                            id: 2,
+                            timeOfDay: _timeOfDay2,
+                          );
+                        }
+                      }
+                    },
                   ),
                 ),
                 Checkbox(
@@ -171,26 +185,6 @@ class _SettingsPageState extends State<SettingsPage> {
                         }
                       });
                     }),
-                IconButton(
-                  onPressed: () async {
-                    final result = await _selectedTime(
-                      secondReminderKey,
-                      _timeOfDay2,
-                      _time2Controller,
-                    );
-                    if (result != null) {
-                      _timeOfDay2 = result;
-                      if (_activeDailyReminder2 ?? false) {
-                        LocalNotifications.cancelNotification(2);
-                        LocalNotifications.setDailyScheduleNotification(
-                          id: 2,
-                          timeOfDay: _timeOfDay2,
-                        );
-                      }
-                    }
-                  },
-                  icon: const Icon(Icons.notifications_on),
-                )
               ],
             ),
             const SizedBox(height: 32.0),
@@ -205,6 +199,24 @@ class _SettingsPageState extends State<SettingsPage> {
                       labelText: 'Third Daily Reminder',
                       border: OutlineInputBorder(),
                     ),
+                    onTap: () async {
+                      final result = await _selectedTime(
+                        thirdReminderKey,
+                        _timeOfDay3,
+                        _time3Controller,
+                      );
+
+                      if (result != null) {
+                        _timeOfDay3 = result;
+                        if (_activeDailyReminder3 ?? false) {
+                          LocalNotifications.cancelNotification(3);
+                          LocalNotifications.setDailyScheduleNotification(
+                            id: 3,
+                            timeOfDay: _timeOfDay3,
+                          );
+                        }
+                      }
+                    },
                   ),
                 ),
                 Checkbox(
@@ -222,27 +234,6 @@ class _SettingsPageState extends State<SettingsPage> {
                         }
                       });
                     }),
-                IconButton(
-                  onPressed: () async {
-                    final result = await _selectedTime(
-                      thirdReminderKey,
-                      _timeOfDay3,
-                      _time3Controller,
-                    );
-
-                    if (result != null) {
-                      _timeOfDay3 = result;
-                      if (_activeDailyReminder3 ?? false) {
-                        LocalNotifications.cancelNotification(3);
-                        LocalNotifications.setDailyScheduleNotification(
-                          id: 3,
-                          timeOfDay: _timeOfDay3,
-                        );
-                      }
-                    }
-                  },
-                  icon: const Icon(Icons.notifications_on),
-                )
               ],
             ),
             const SizedBox(height: 32.0),
@@ -250,7 +241,7 @@ class _SettingsPageState extends State<SettingsPage> {
               onPressed: () {
                 LocalNotifications.showSimpleNotification(
                   title: 'Daily Checker Reminder 🧠',
-                  body: 'This is an exemple notification! Did you like it 🙂?',
+                  body: 'This is an notification example! Did you like it 🙂?',
                   payload: 'empty',
                 );
               },

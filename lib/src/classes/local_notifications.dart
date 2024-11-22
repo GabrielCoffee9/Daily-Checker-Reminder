@@ -12,13 +12,15 @@ class LocalNotifications {
 
     const InitializationSettings initializationSettings =
         InitializationSettings(android: initializationSettingsAndroid);
-    _flutterLocalNotificationsPlugin.initialize(
-      initializationSettings,
-    );
+    _flutterLocalNotificationsPlugin.initialize(initializationSettings);
     _flutterLocalNotificationsPlugin
         .resolvePlatformSpecificImplementation<
             AndroidFlutterLocalNotificationsPlugin>()!
         .requestExactAlarmsPermission();
+    _flutterLocalNotificationsPlugin
+        .resolvePlatformSpecificImplementation<
+            AndroidFlutterLocalNotificationsPlugin>()!
+        .requestNotificationsPermission();
   }
 
   static Future showSimpleNotification({
