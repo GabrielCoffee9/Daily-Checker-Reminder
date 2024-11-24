@@ -43,13 +43,13 @@ class _CalendarPageState extends State<CalendarPage> {
       children: [
         TableCalendar(
           calendarStyle: CalendarStyle(
-            rangeHighlightColor: Colors.pink[200]!,
+            rangeHighlightColor: Colors.red,
             todayDecoration: BoxDecoration(
-              color: Colors.pink[200]!,
+              color: Theme.of(context).colorScheme.secondary,
               shape: BoxShape.circle,
             ),
             selectedDecoration: BoxDecoration(
-              color: Colors.pink[600]!,
+              color: Theme.of(context).primaryColor,
               shape: BoxShape.circle,
             ),
           ),

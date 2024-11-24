@@ -34,8 +34,7 @@ class _HomePageState extends State<HomePage> {
         padding: const EdgeInsets.all(8.0),
         child: items.isEmpty
             ? const Center(
-                child:
-                    Text("Tap the '+' button below to add new activities 😊"),
+                child: Text("Tap the '+' button below to add new activities"),
               )
             : ListView.builder(
                 itemCount: items.length,
@@ -52,8 +51,14 @@ class _HomePageState extends State<HomePage> {
                       });
 
                       // Then show a snackbar.
+
                       ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('item dismissed')));
+                        SnackBar(
+                          behavior: SnackBarBehavior.floating,
+                          content: Text('Item deleted'),
+                          action: SnackBarAction(label: 'Ok', onPressed: () {}),
+                        ),
+                      );
                     },
                     background: Container(
                       color: Colors.red,

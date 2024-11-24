@@ -2,17 +2,22 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 import 'item.dart';
+
+AndroidOptions _getAndroidOptions() => const AndroidOptions(
+      encryptedSharedPreferences: true,
+    );
+final storage = FlutterSecureStorage(aOptions: _getAndroidOptions());
 
 Map<DateTime, List<Item>> dailyActivities = {};
 
 List<Item> items = [];
 
 Future<void> saveItems() async {
-  final prefs = await SharedPreferences.getInstance();
   final json = items.map((item) => item.toJson()).toList();
-  await prefs.setString('items', jsonEncode(json));
+  await storage.write(key: 'items', value: jsonEncode(json));
 
   final today =
       DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
@@ -23,8 +28,7 @@ Future<void> saveItems() async {
 }
 
 Future<List<Item>> loadItems() async {
-  final prefs = await SharedPreferences.getInstance();
-  final json = prefs.getString('items');
+  final json = await storage.read(key: 'items');
   if (json == null) return [];
   final itemsList = jsonDecode(json) as List<dynamic>;
 
@@ -32,12 +36,10 @@ Future<List<Item>> loadItems() async {
 }
 
 Future<List<Item>> loadActivitiesFromDate(DateTime date) async {
-  final prefs = await SharedPreferences.getInstance();
-
   final rightDate = DateTime(date.year, date.month, date.day);
 
-  final json =
-      prefs.getString('daily_activities_${rightDate.millisecondsSinceEpoch}');
+  final json = await storage.read(
+      key: 'daily_activities_${rightDate.millisecondsSinceEpoch}');
 
   if (json == null) return [];
 
@@ -47,10 +49,10 @@ Future<List<Item>> loadActivitiesFromDate(DateTime date) async {
 }
 
 void saveActivitiesDay(DateTime day) async {
-  final prefs = await SharedPreferences.getInstance();
   final json = dailyActivities[day]!.map((item) => item.toJson()).toList();
-  await prefs.setString(
-      'daily_activities_${day.millisecondsSinceEpoch}', jsonEncode(json));
+  await storage.write(
+      key: 'daily_activities_${day.millisecondsSinceEpoch}',
+      value: jsonEncode(json));
 }
 
 void saveReminder(String reminderName, TimeOfDay time) async {

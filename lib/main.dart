@@ -13,5 +13,5 @@ void main() async {
   tz.initializeTimeZones();
   tz.setLocalLocation(tz.getLocation('America/Sao_Paulo'));
 
-  runApp(const MyApp());
+  runApp(const DailyCheckerReminder());
 }
