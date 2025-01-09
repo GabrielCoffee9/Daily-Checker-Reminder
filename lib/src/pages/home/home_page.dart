@@ -44,18 +44,15 @@ class _HomePageState extends State<HomePage> {
                   return Dismissible(
                     key: Key(item.text),
                     onDismissed: (direction) {
-                      // Remove the item from the data source.
                       setState(() {
                         items.removeAt(index);
                         saveItems();
                       });
 
-                      // Then show a snackbar.
-
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           behavior: SnackBarBehavior.floating,
-                          content: Text('Item deleted'),
+                          content: Text('Activity deleted'),
                           action: SnackBarAction(label: 'Ok', onPressed: () {}),
                         ),
                       );
@@ -75,7 +72,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                       subtitle: Text(item.doneTime == null
                           ? 'Not done yet'
-                          : DateFormat('dd/MM/yyyy – kk:mm:ss')
+                          : DateFormat('M/d/yyyy – kk:mm:ss')
                               .format(item.doneTime!)),
                       onChanged: (value) {
                         setState(() {
@@ -93,45 +90,7 @@ class _HomePageState extends State<HomePage> {
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          items.isNotEmpty
-              ? Padding(
-                  padding: const EdgeInsets.only(bottom: 20.0),
-                  child: FloatingActionButton(
-                    heroTag: 'floatingClear',
-                    onPressed: () {
-                      showDialog(
-                        context: context,
-                        builder: (context) => AlertDialog(
-                          title: const Text(
-                              'Are you sure you want to clear all checkboxes ?'),
-                          actions: [
-                            TextButton(
-                              onPressed: () => Navigator.pop(context),
-                              child: const Text('No'),
-                            ),
-                            TextButton(
-                                onPressed: () {
-                                  for (var item in items) {
-                                    item.checked = false;
-                                    item.doneTime = null;
-                                  }
-                                  setState(() {
-                                    saveItems();
-                                  });
-                                  Navigator.pop(context);
-                                },
-                                child: const Text('Yes'))
-                          ],
-                        ),
-                      );
-                    },
-                    tooltip: 'Increment',
-                    child: const Icon(Icons.cleaning_services),
-                  ),
-                )
-              : const Text(''),
           FloatingActionButton(
-            heroTag: 'floatingAdd',
             onPressed: () {
               showDialog(
                 context: context,
@@ -144,7 +103,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               );
             },
-            tooltip: 'Increment',
+            tooltip: 'Add a new activity',
             child: const Icon(Icons.add),
           ),
         ],

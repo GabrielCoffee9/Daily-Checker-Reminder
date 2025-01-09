@@ -65,7 +65,7 @@ class _CalendarPageState extends State<CalendarPage> {
           onDaySelected: (selectedDay, focusedDay) {
             setState(() {
               _selectedDay = selectedDay;
-              _focusedDay = focusedDay; // update `_focusedDay` here as well
+              _focusedDay = focusedDay;
               _selected();
             });
           },
@@ -74,27 +74,29 @@ class _CalendarPageState extends State<CalendarPage> {
           focusedDay: _focusedDay,
         ),
         const Divider(),
-        ListView.builder(
-          shrinkWrap: true,
-          itemCount: dailyActivities[_selecteDayPure]?.length ?? 0,
-          itemBuilder: (context, index) {
-            Item item = dailyActivities[_selecteDayPure]![index];
+        Expanded(
+          child: ListView.builder(
+            shrinkWrap: true,
+            itemCount: dailyActivities[_selecteDayPure]?.length ?? 0,
+            itemBuilder: (context, index) {
+              Item item = dailyActivities[_selecteDayPure]![index];
 
-            return CheckboxListTile(
-              value: item.checked,
-              title: Text(
-                item.text,
-                style: TextStyle(
-                    decoration: item.checked
-                        ? TextDecoration.lineThrough
-                        : TextDecoration.none),
-              ),
-              subtitle: Text(item.doneTime == null
-                  ? "It wasn't done"
-                  : DateFormat('dd/MM/yyyy – kk:mm:ss').format(item.doneTime!)),
-              onChanged: (value) {},
-            );
-          },
+              return CheckboxListTile(
+                value: item.checked,
+                title: Text(
+                  item.text,
+                  style: TextStyle(
+                      decoration: item.checked
+                          ? TextDecoration.lineThrough
+                          : TextDecoration.none),
+                ),
+                subtitle: Text(item.doneTime == null
+                    ? "Not checked"
+                    : DateFormat('M/d/yyyy – kk:mm:ss').format(item.doneTime!)),
+                onChanged: (value) {},
+              );
+            },
+          ),
         ),
       ],
     );

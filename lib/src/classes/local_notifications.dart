@@ -6,21 +6,23 @@ class LocalNotifications {
   static final _flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
 
-  static init() {
+  static init() async {
     const AndroidInitializationSettings initializationSettingsAndroid =
         AndroidInitializationSettings('@mipmap/launcher_icon');
 
     const InitializationSettings initializationSettings =
         InitializationSettings(android: initializationSettingsAndroid);
     _flutterLocalNotificationsPlugin.initialize(initializationSettings);
-    _flutterLocalNotificationsPlugin
-        .resolvePlatformSpecificImplementation<
-            AndroidFlutterLocalNotificationsPlugin>()!
-        .requestExactAlarmsPermission();
-    _flutterLocalNotificationsPlugin
+
+    await _flutterLocalNotificationsPlugin
         .resolvePlatformSpecificImplementation<
             AndroidFlutterLocalNotificationsPlugin>()!
         .requestNotificationsPermission();
+
+    await _flutterLocalNotificationsPlugin
+        .resolvePlatformSpecificImplementation<
+            AndroidFlutterLocalNotificationsPlugin>()!
+        .requestExactAlarmsPermission();
   }
 
   static Future showSimpleNotification({

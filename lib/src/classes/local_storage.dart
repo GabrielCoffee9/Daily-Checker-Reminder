@@ -32,7 +32,21 @@ Future<List<Item>> loadItems() async {
   if (json == null) return [];
   final itemsList = jsonDecode(json) as List<dynamic>;
 
-  return itemsList.map((item) => Item.fromJson(item)).toList();
+  var result = itemsList.map((item) => Item.fromJson(item)).toList();
+
+  for (var item in result) {
+    if (item.checked && item.doneTime != null) {
+      final now = DateTime.now();
+      final today = DateTime(now.year, now.month, now.day);
+      final timeDiferrence = item.doneTime!.isBefore(today);
+      if (timeDiferrence) {
+        item.checked = false;
+        item.doneTime = null;
+      }
+    }
+  }
+
+  return result;
 }
 
 Future<List<Item>> loadActivitiesFromDate(DateTime date) async {

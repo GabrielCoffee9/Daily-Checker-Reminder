@@ -1,4 +1,3 @@
-import 'package:daily_checker_reminder/src/app_widget.dart';
 import 'package:daily_checker_reminder/src/classes/local_notifications.dart';
 import 'package:daily_checker_reminder/src/classes/local_storage.dart';
 import 'package:daily_checker_reminder/src/providers/theme_provider.dart';
@@ -30,13 +29,10 @@ class _SettingsPageState extends State<SettingsPage> {
   bool? _activeDailyReminder2 = false;
   bool? _activeDailyReminder3 = false;
 
-  // late Color screenPickerColor;
-
   @override
   void initState() {
     super.initState();
     loadTimers();
-    // screenPickerColor = Colors.blue;
   }
 
   void loadTimers() async {
@@ -87,7 +83,6 @@ class _SettingsPageState extends State<SettingsPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Settings'),
-        // centerTitle: true,
       ),
       body: ListView(
         padding: const EdgeInsets.all(20.0),
