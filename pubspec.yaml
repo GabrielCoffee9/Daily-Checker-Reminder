@@ -16,7 +16,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 1.0.0+1
+version: 1.0.3
 
 environment:
   sdk: '>=3.3.4 <4.0.0'
@@ -41,16 +41,20 @@ dependencies:
   flutter_local_notifications: ^18.0.1
   google_fonts: ^6.2.1
   timezone: ^0.10.0
-  flutter_launcher_icons: ^0.14.1
-  flutter_native_splash: ^2.4.0
   flex_color_picker: ^3.6.0
   provider: ^6.1.2
   flutter_secure_storage: ^9.2.2
   flutter_timezone: ^3.0.1
+  flutter_native_splash: ^2.4.4
+  flutter_localizations:
+    sdk: flutter
+  flutter_command: ^7.2.2
+  package_info_plus: ^8.1.3
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+    
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -59,24 +63,36 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^5.0.0
   
-flutter_launcher_icons:
-  android: "launcher_icon"
-  ios: false
-  image_path: "assets/icon/icon.png"
-  min_sdk_android: 21 # android min sdk min:16, default 21
 
 flutter_native_splash:
- color: "f887c6"
- image:  "assets/icon/icon.png"
- android: true
+  color: "#765ddd"
+  image: 'assets/icon/daily_logo.png'
 
+  android_12:
+    color: "#765ddd"
+
+    icon_background_color: "#111111"
+
+    # The branding property allows you to specify an image used as branding in the splash screen.
+    # branding: 'assets/icon/daily_logo.png'
+
+    # The image_dark, color_dark, icon_background_color_dark, and branding_dark set values that
+    # apply when the device is in dark mode. If they are not specified, the app will use the
+    # parameters from above.  If there is no parameter above, the app will use the light mode values.
+    # image_dark: assets/android12splash-invert.png
+    # color_dark: "#042a49"
+    # icon_background_color_dark: "#eeeeee"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter packages.
+
+
+
 flutter:
 
+  generate: true
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

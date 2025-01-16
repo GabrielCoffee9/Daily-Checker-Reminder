@@ -1,0 +1,49 @@
+{
+  "today": "Heute",
+  "all_days": "Alle Tage",
+  "tap_to_add": "Tippen Sie auf die '+'-Schaltfläche unten, um neue Aktivitäten hinzuzufügen",
+  "activity_deleted": "Aktivität gelöscht",
+  "not_done_yet": "Noch nicht erledigt",
+  "add_new_activity": "Neue Aktivität hinzufügen",
+
+  "settings": "Einstellungen",
+  "first_reminder": "Erste Erinnerung",
+  "second_reminder": "Zweite Erinnerung",
+  "third_reminder": "Dritte Erinnerung",
+  "language": "Sprache",
+  "english": "Englisch",
+  "spanish": "Spanisch",
+  "portuguese": "Portugiesisch (Portugal)",
+  "brazilian": "Portugiesisch (Brasilien)",
+  "french": "Französisch",
+  "german": "Deutsch",
+  "italian": "Italienisch",
+  "japanese": "Japanisch",
+  "chinese": "Chinesisch (Vereinfacht)",
+  "set_daily_reminders": "Tägliche Erinnerungen festlegen",
+  "set_reminders_help": "Diese Timer werden verwendet, um Sie daran zu erinnern, Ihre Aktivitäten im Laufe des Tages zu aktualisieren.",
+  "show_reminder_example": "Zeigen Sie mir ein Beispiel für eine Erinnerung",
+  "app_color_theme": "App-Farbthema",
+  "made_with_heart": "Hergestellt mit ❤️ von Gabriel Café",
+
+  "add_activity": "Aktivität hinzufügen",
+  "add": "Hinzu",
+  "enter_your_activity_description": "Geben Sie hier Ihre Aktivitätsbeschreibung ein",
+  "description_required": "Die Beschreibung ist erforderlich",
+  "already_did_it_today": "Heute schon gemacht",
+  "discard": "Verwerfen",
+  "confirm": "Bestätigen",
+  "not_checked": "Nicht geprüft",
+
+  "general_reminder_update_now": "Haben Sie etwas Neues auf Ihrer Liste zu überprüfen? Jetzt aktualisieren!",
+  "notification_example": "Dies ist ein Beispiel für eine Benachrichtigung! Hat es Ihnen gefallen? 🙂",
+  "date_format": "Datumsformat",
+  "current_format": "Aktuelles Format",
+  "two_weeks": "Zwei Wochen",
+  "week": "Woche",
+  "month": "Monat",
+  "no_activity_found": "Keine Aktivität an diesem Tag gefunden"
+
+
+
+}

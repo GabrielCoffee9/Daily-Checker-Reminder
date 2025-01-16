@@ -1,0 +1,49 @@
+{
+  "today": "Aujourd'hui",
+  "all_days": "Tous les jours",
+  "tap_to_add": "Appuyez sur le bouton '+' ci-dessous pour ajouter de nouvelles activités",
+  "activity_deleted": "Activité supprimée",
+  "not_done_yet": "Pas encore fait",
+  "add_new_activity": "Ajouter une nouvelle activité",
+
+  "settings": "Paramètres",
+  "first_reminder": "Premier rappel",
+  "second_reminder": "Deuxième rappel",
+  "third_reminder": "Troisième rappel",
+  "language": "Langue",
+  "english": "Anglais",
+  "spanish": "Espagnol",
+  "portuguese": "Portugais (Portugal)",
+  "brazilian": "Portugais (Brésil)",
+  "french": "Français",
+  "german": "Allemand",
+  "italian": "Italien",
+  "japanese": "Japonais",
+  "chinese": "Chinois (Simplifié)",
+  "set_daily_reminders": "Définir des rappels quotidiens",
+  "set_reminders_help": "Ces minuteries sont utilisées pour vous rappeler de mettre à jour vos activités au cours de la journée.",
+  "show_reminder_example": "Montrez-moi un exemple de rappel",
+  "app_color_theme": "Thème de couleur de l'application",
+  "made_with_heart": "Fait avec ❤️ par Gabriel Café",
+
+  "add_activity": "Ajouter une activité",
+  "add": "Ajt",
+  "enter_your_activity_description": "Entrez la description de votre activité ici",
+  "description_required": "La description est requise",
+  "already_did_it_today": "Déjà fait aujourd'hui",
+  "discard": "Annuler",
+  "confirm": "Confirmer",
+  "not_checked": "Non vérifié",
+
+  "general_reminder_update_now": "Vous avez quelque chose de nouveau à vérifier dans votre liste ? Mettez à jour maintenant !",
+  "notification_example": "Ceci est un exemple de notification ! Ça vous plaît ? 🙂",
+  "date_format": "Format de date",
+  "current_format": "Format actuel",
+  "two_weeks": "Deux semaines",
+  "week": "Semaine",
+  "month": "Mois",
+  "no_activity_found": "Aucune activité trouvée ce jour-là"
+
+
+
+}

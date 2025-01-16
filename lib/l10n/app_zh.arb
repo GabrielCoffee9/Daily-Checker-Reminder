@@ -1,0 +1,50 @@
+{
+  "today": "今天",
+  "all_days": "所有天",
+  "tap_to_add": "点击下方的“+”按钮添加新活动",
+  "activity_deleted": "活动已删除",
+  "not_done_yet": "尚未完成",
+  "add_new_activity": "添加新活动",
+
+  "settings": "设置",
+  "first_reminder": "第一次提醒",
+  "second_reminder": "第二次提醒",
+  "third_reminder": "第三次提醒",
+  "language": "语言",
+  "english": "英语",
+  "spanish": "西班牙语",
+  "portuguese": "葡萄牙语 (葡萄牙)",
+  "brazilian": "葡萄牙语 (巴西)",
+  "french": "法语",
+  "german": "德语",
+  "italian": "意大利语",
+  "japanese": "日语",
+  "chinese": "中文 (简体)",
+  "set_daily_reminders": "设置每日提醒",
+  "set_reminders_help": "这些定时器用于提醒您在一天中更新活动。",
+  "show_reminder_example": "向我展示一个提醒的示例",
+  "app_color_theme": "应用颜色主题",
+  "made_with_heart": "由 Gabriel Café ❤️ 制作",
+
+  "add_activity": "添加活动",
+  "add": "加",
+  "enter_your_activity_description": "在此输入您的活动描述",
+  "description_required": "描述是必需的",
+  "already_did_it_today": "今天已经完成",
+  "discard": "放弃",
+  "confirm": "确认",
+  "not_checked": "未选中",
+
+  "general_reminder_update_now": "清单中有新内容需要检查吗？立即更新！",
+  "notification_example": "这是一个通知示例！你喜欢吗？🙂",
+  "date_format": "日期格式",
+  "current_format": "当前格式",
+  "two_weeks": "两周",
+  "week": "周",
+  "month": "月",
+  "no_activity_found": "当天未找到任何活动"
+
+
+
+
+}

@@ -1,0 +1,50 @@
+{
+  "today": "今日",
+  "all_days": "毎日",
+  "tap_to_add": "下の'+'ボタンをタップして新しいアクティビティを追加してください",
+  "activity_deleted": "アクティビティが削除されました",
+  "not_done_yet": "まだ完了していません",
+  "add_new_activity": "新しいアクティビティを追加",
+
+  "settings": "設定",
+  "first_reminder": "最初のリマインダー",
+  "second_reminder": "2回目のリマインダー",
+  "third_reminder": "3回目のリマインダー",
+  "language": "言語",
+  "english": "英語",
+  "spanish": "スペイン語",
+  "portuguese": "ポルトガル語 (ポルトガル)",
+  "brazilian": "ポルトガル語 (ブラジル)",
+  "french": "フランス語",
+  "german": "ドイツ語",
+  "italian": "イタリア語",
+  "japanese": "日本語",
+  "chinese": "中国語 (簡体字)",
+  "set_daily_reminders": "毎日のリマインダーを設定する",
+  "set_reminders_help": "これらのタイマーは、日中にアクティビティを更新するよう通知します。",
+  "show_reminder_example": "リマインダーの例を見せてください",
+  "app_color_theme": "アプリのカラーテーマ",
+  "made_with_heart": "Gabriel Café によって❤️で作られました",
+
+  "add_activity": "アクティビティを追加",
+  "add": "追加",
+  "enter_your_activity_description": "ここにアクティビティの説明を入力してください",
+  "description_required": "説明が必要です",
+  "already_did_it_today": "今日はすでに完了しました",
+  "discard": "破棄",
+  "confirm": "確認",
+  "not_checked": "未確認",
+
+  "general_reminder_update_now": "リストに確認する新しい項目がありますか？今すぐ更新してください！",
+  "notification_example": "これは通知の例です！気に入りましたか？🙂",
+  "date_format": "日付形式",
+  "current_format": "現在の形式",
+  "two_weeks": "2週間",
+  "week": "週",
+  "month": "月",
+  "no_activity_found": "この日に活動が見つかりませんでした"
+
+
+
+
+}

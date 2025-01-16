@@ -4,7 +4,7 @@ import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 
 import 'src/app_widget.dart';
-import 'src/classes/local_notifications.dart';
+import 'src/data/services/local_notifications.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
