@@ -51,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       if (widget.viewModel.checkedItemsCount ==
                           widget.viewModel.items.length) {
                         return Text(
-                          'All checked !',
+                          AppLocalizations.of(context)!.all_checked,
                           style: Theme.of(context).textTheme.bodyLarge!.merge(
                               TextStyle(
                                   color:

@@ -42,7 +42,8 @@
   "two_weeks": "Duas semanas",
   "week": "Semana",
   "month": "Mês",
-  "no_activity_found": "Nenhuma atividade encontrada neste dia"
+  "no_activity_found": "Nenhuma atividade encontrada neste dia",
+  "all_checked": "Tudo verificado!"
 
 
 }

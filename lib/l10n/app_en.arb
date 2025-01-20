@@ -42,6 +42,7 @@
   "two_weeks": "Two weeks",
   "week": "Week",
   "month": "Month",
-  "no_activity_found": "No activity found on this day"
+  "no_activity_found": "No activity found on this day",
+  "all_checked": "All checked!"
 
 }
