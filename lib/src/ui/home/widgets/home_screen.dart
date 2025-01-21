@@ -60,7 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       }
 
                       return Text(
-                        '${widget.viewModel.checkedItemsCount}/${widget.viewModel.items.length} checked',
+                        '${widget.viewModel.checkedItemsCount}/${widget.viewModel.items.length} ${AppLocalizations.of(context)!.checked}',
                         style: Theme.of(context).textTheme.bodyLarge!.merge(
                             TextStyle(
                                 color: Theme.of(context).colorScheme.tertiary)),

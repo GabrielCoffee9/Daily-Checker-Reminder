@@ -43,9 +43,7 @@
   "week": "周",
   "month": "月",
   "no_activity_found": "当天未找到任何活动",
-  "all_checked": "全部已检查"
-
-
-
+  "all_checked": "全部已检查",
+  "checked": "已检查"
 
 }

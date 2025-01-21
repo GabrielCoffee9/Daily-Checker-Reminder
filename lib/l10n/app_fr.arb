@@ -43,7 +43,8 @@
   "week": "Semaine",
   "month": "Mois",
   "no_activity_found": "Aucune activité trouvée ce jour-là",
-  "all_checked": "Tout vérifié!"
+  "all_checked": "Tout vérifié!",
+  "checked": "vérifié"
 
 
 

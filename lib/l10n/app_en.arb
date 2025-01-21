@@ -43,6 +43,7 @@
   "week": "Week",
   "month": "Month",
   "no_activity_found": "No activity found on this day",
-  "all_checked": "All checked!"
+  "all_checked": "All checked!",
+  "checked": "checked"
 
 }
