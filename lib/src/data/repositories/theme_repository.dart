@@ -17,7 +17,7 @@ class ThemeRepository extends ChangeNotifier {
   saveThemeConfig() async {
     final prefs = await SharedPreferences.getInstance();
 
-    prefs.setInt('themeColorConfig', themeSeedColor.value);
+    prefs.setInt('themeColorConfig', themeSeedColor.toARGB32());
   }
 
   void _getThemeConfig() async {

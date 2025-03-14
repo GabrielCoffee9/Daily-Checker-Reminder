@@ -1,9 +1,9 @@
 import 'package:flex_color_picker/flex_color_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
 import '../../../data/repositories/theme_repository.dart';
+import '../../../i18n/generated/app_localizations.dart';
 
 class ThemeSetting extends StatelessWidget {
   const ThemeSetting({super.key});

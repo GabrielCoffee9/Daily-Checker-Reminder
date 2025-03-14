@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'data/repositories/date_format_repository.dart';
 import 'data/repositories/local_storage_repository.dart';
 import 'data/repositories/locale_repository.dart';
 import 'data/repositories/theme_repository.dart';
+import 'i18n/generated/app_localizations.dart';
 import 'ui/calendar/view_model/calendar_view_model.dart';
 import 'ui/calendar/widgets/calendar_screen.dart';
 import 'ui/home/view_model/home_view_model.dart';

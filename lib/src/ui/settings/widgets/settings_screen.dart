@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../data/repositories/locale_repository.dart';
+import '../../../i18n/generated/app_localizations.dart';
 import '../view_model/settings_view_model.dart';
 import 'date_format_setting.dart';
 import 'language_setting.dart';

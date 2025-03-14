@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:table_calendar/table_calendar.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../../../i18n/generated/app_localizations.dart';
 import '../../../models/item.dart';
 import '../../../data/repositories/date_format_repository.dart';
 import '../view_model/calendar_view_model.dart';
