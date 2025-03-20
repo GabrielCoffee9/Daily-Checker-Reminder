@@ -28,12 +28,13 @@
 
   "add_activity": "Ajouter une activité",
   "add": "Ajt",
-  "enter_your_activity_description": "Entrez la description de votre activité ici",
+  "activity_description": "Description de l'activité",
   "description_required": "La description est requise",
   "already_did_it_today": "Déjà fait aujourd'hui",
   "discard": "Annuler",
   "confirm": "Confirmer",
   "not_checked": "Non vérifié",
+  "an_error_has_occurred": "Une erreur est survenue, veuillez réessayer.",
 
   "general_reminder_update_now": "Vous avez quelque chose de nouveau à vérifier dans votre liste ? Mettez à jour maintenant !",
   "notification_example": "Ceci est un exemple de notification ! Ça vous plaît ? 🙂",

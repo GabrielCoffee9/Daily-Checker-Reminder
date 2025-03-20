@@ -28,12 +28,13 @@
 
   "add_activity": "添加活动",
   "add": "加",
-  "enter_your_activity_description": "在此输入您的活动描述",
+  "activity_description": "活动描述",
   "description_required": "描述是必需的",
   "already_did_it_today": "今天已经完成",
   "discard": "放弃",
   "confirm": "确认",
   "not_checked": "未选中",
+  "an_error_has_occurred": "发生错误，请重试。",
 
   "general_reminder_update_now": "清单中有新内容需要检查吗？立即更新！",
   "notification_example": "这是一个通知示例！你喜欢吗？🙂",

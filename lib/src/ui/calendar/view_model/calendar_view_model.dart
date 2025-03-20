@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_command/flutter_command.dart';
 
 import '../../../data/repositories/local_storage_repository.dart';
-import '../../../models/item.dart';
+import '../../../models/activity.dart';
 
 class CalendarViewModel extends ChangeNotifier {
   CalendarViewModel({required LocalStorageRepository localStorageRepository})
@@ -33,7 +33,7 @@ class CalendarViewModel extends ChangeNotifier {
 
   DateTime? _selectDayPure;
 
-  List<Item> _items = [];
+  List<Activity> _items = [];
 
   UnmodifiableListView get items => UnmodifiableListView(_items);
 

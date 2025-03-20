@@ -4,6 +4,7 @@ import 'package:flutter_command/flutter_command.dart';
 import '../../../data/repositories/local_storage_repository.dart';
 import '../../../data/services/local_notifications.dart';
 import '../../../i18n/generated/app_localizations.dart';
+import '../../../models/time_of_day_with_context.dart';
 
 class SettingsViewModel extends ChangeNotifier {
   SettingsViewModel({required LocalStorageRepository localStorageRepository})
@@ -12,6 +13,8 @@ class SettingsViewModel extends ChangeNotifier {
 
     resetScheduleNotifications =
         Command.createAsyncNoResult(_resetScheduleNotifications);
+
+    updateRemindersText = Command.createAsyncNoResult(_updateRemindersText);
 
     updateTimerReminder1 = Command.createAsyncNoResult(_updateTimerReminder1);
     updateTimerReminder2 = Command.createAsyncNoResult(_updateTimerReminder2);
@@ -34,11 +37,13 @@ class SettingsViewModel extends ChangeNotifier {
 
   late Command<AppLocalizations, void> resetScheduleNotifications;
 
-  late Command<TimeOfDay, void> updateTimerReminder1;
+  late Command<BuildContext, void> updateRemindersText;
 
-  late Command<TimeOfDay, void> updateTimerReminder2;
+  late Command<TimeOfDayWithContext, void> updateTimerReminder1;
 
-  late Command<TimeOfDay, void> updateTimerReminder3;
+  late Command<TimeOfDayWithContext, void> updateTimerReminder2;
+
+  late Command<TimeOfDayWithContext, void> updateTimerReminder3;
 
   late Command<bool, void> onChangedActiveDailyReminder1;
   late Command<bool, void> onChangedActiveDailyReminder2;
@@ -104,10 +109,11 @@ class SettingsViewModel extends ChangeNotifier {
     _time3Controller.text =
         '${_timeOfDay3.hour.toString()}:${_timeOfDay3.minute.toString()}';
 
-    final pending = await LocalNotifications.getPendingNotifications();
+    final pendingNotifications =
+        await LocalNotifications.getPendingNotifications();
 
-    for (var element in pending) {
-      switch (element.id) {
+    for (var notification in pendingNotifications) {
+      switch (notification.id) {
         case 1:
           _activeDailyReminder1 = true;
         case 2:
@@ -152,29 +158,35 @@ class SettingsViewModel extends ChangeNotifier {
     }
   }
 
-  Future<void> _updateTimerReminder1(TimeOfDay newTime) async {
-    _timeOfDay1 = newTime;
+  Future<void> _updateRemindersText(BuildContext context) async {
+    time1Controller.text = _timeOfDay1.format(context);
+    time2Controller.text = _timeOfDay2.format(context);
+    time3Controller.text = _timeOfDay3.format(context);
+    notifyListeners();
+  }
 
-    time1Controller.text =
-        '${_timeOfDay1.hour.toString()}:${_timeOfDay1.minute.toString()}';
+  Future<void> _updateTimerReminder1(TimeOfDayWithContext newTime) async {
+    _timeOfDay1 = newTime.timeOfDay;
+
+    time1Controller.text = newTime.timeOfDay.format(newTime.context);
 
     _localStorageRepository.saveReminder(firstReminderKey, _timeOfDay1);
     notifyListeners();
   }
 
-  Future<void> _updateTimerReminder2(TimeOfDay newTime) async {
-    _timeOfDay2 = newTime;
-    time2Controller.text =
-        '${_timeOfDay2.hour.toString()}:${_timeOfDay2.minute.toString()}';
+  Future<void> _updateTimerReminder2(TimeOfDayWithContext newTime) async {
+    _timeOfDay2 = newTime.timeOfDay;
+
+    time2Controller.text = newTime.timeOfDay.format(newTime.context);
 
     _localStorageRepository.saveReminder(secondReminderKey, _timeOfDay2);
     notifyListeners();
   }
 
-  Future<void> _updateTimerReminder3(TimeOfDay newTime) async {
-    _timeOfDay3 = newTime;
-    time3Controller.text =
-        '${_timeOfDay3.hour.toString()}:${_timeOfDay3.minute.toString()}';
+  Future<void> _updateTimerReminder3(TimeOfDayWithContext newTime) async {
+    _timeOfDay3 = newTime.timeOfDay;
+
+    time3Controller.text = newTime.timeOfDay.format(newTime.context);
 
     _localStorageRepository.saveReminder(thirdReminderKey, _timeOfDay3);
     notifyListeners();

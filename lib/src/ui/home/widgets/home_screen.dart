@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 import '../../../data/repositories/date_format_repository.dart';
 import '../../../i18n/generated/app_localizations.dart';
+import '../../../models/activity.dart';
 import '../view_model/home_view_model.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -18,7 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
 
-    widget.viewModel.removeItem.addListener(() {
+    widget.viewModel.removeActivity.addListener(() {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
@@ -41,15 +42,14 @@ class _HomeScreenState extends State<HomeScreen> {
               top: 8.0,
               left: 8.0,
               right: 8.0,
-              bottom: 40.0,
             ),
             child: Column(
               children: [
                 Builder(
                   builder: (context) {
-                    if (widget.viewModel.items.isNotEmpty) {
+                    if (widget.viewModel.activities.isNotEmpty) {
                       if (widget.viewModel.checkedItemsCount ==
-                          widget.viewModel.items.length) {
+                          widget.viewModel.activities.length) {
                         return Text(
                           AppLocalizations.of(context)!.all_checked,
                           style: Theme.of(context).textTheme.bodyLarge!.merge(
@@ -60,7 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       }
 
                       return Text(
-                        '${widget.viewModel.checkedItemsCount}/${widget.viewModel.items.length} ${AppLocalizations.of(context)!.checked}',
+                        '${widget.viewModel.checkedItemsCount}/${widget.viewModel.activities.length} ${AppLocalizations.of(context)!.checked}',
                         style: Theme.of(context).textTheme.bodyLarge!.merge(
                             TextStyle(
                                 color: Theme.of(context).colorScheme.tertiary)),
@@ -69,7 +69,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     return SizedBox();
                   },
                 ),
-                widget.viewModel.items.isEmpty
+                widget.viewModel.activities.isEmpty
                     ? Expanded(
                         child: Center(
                           child: Text(
@@ -80,16 +80,17 @@ class _HomeScreenState extends State<HomeScreen> {
                       )
                     : Expanded(
                         child: ListView.builder(
-                          // physics: NeverScrollableScrollPhysics(),
+                          padding: EdgeInsets.only(bottom: 54),
                           shrinkWrap: true,
-                          itemCount: widget.viewModel.items.length,
+                          itemCount: widget.viewModel.activities.length,
                           itemBuilder: (context, index) {
-                            var item = widget.viewModel.items[index];
+                            Activity activity =
+                                widget.viewModel.activities[index];
 
                             return Dismissible(
-                              key: Key(item.text),
+                              key: UniqueKey(),
                               onDismissed: (direction) {
-                                widget.viewModel.removeItem.execute(index);
+                                widget.viewModel.removeActivity.execute(index);
                               },
                               background: Container(
                                 color: Colors.red[400],
@@ -99,26 +100,28 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                               ),
                               child: CheckboxListTile(
-                                value: item.checked,
+                                value: activity.checked,
                                 title: Text(
-                                  item.text,
+                                  activity.name,
                                   style: TextStyle(
-                                      decoration: item.checked
+                                      decoration: activity.checked
                                           ? TextDecoration.lineThrough
                                           : TextDecoration.none),
                                 ),
-                                subtitle: Text(item.doneTime == null
+                                subtitle: Text(activity.doneTime == null
                                     ? AppLocalizations.of(context)!.not_done_yet
                                     : DateFormat(
                                             '${DateFormat(context.watch<DateFormatRepository>().currentDateFormat).format(DateTime.now())} – kk:mm:ss')
-                                        .format(item.doneTime!)),
+                                        .format(activity.doneTime!)),
                                 onChanged: (value) {
                                   setState(() {
-                                    item.checked = value ?? !item.checked;
+                                    activity.checked =
+                                        value ?? !activity.checked;
 
-                                    item.doneTime =
-                                        item.checked ? DateTime.now() : null;
-                                    widget.viewModel.updateItem.execute();
+                                    activity.doneTime = activity.checked
+                                        ? DateTime.now()
+                                        : null;
+                                    widget.viewModel.updateActivity.execute();
                                   });
                                 },
                               ),

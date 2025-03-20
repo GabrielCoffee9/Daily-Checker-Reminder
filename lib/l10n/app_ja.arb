@@ -28,12 +28,13 @@
 
   "add_activity": "アクティビティを追加",
   "add": "追加",
-  "enter_your_activity_description": "ここにアクティビティの説明を入力してください",
+  "activity_description": "アクティビティの説明",
   "description_required": "説明が必要です",
   "already_did_it_today": "今日はすでに完了しました",
   "discard": "破棄",
   "confirm": "確認",
   "not_checked": "未確認",
+  "an_error_has_occurred": "エラーが発生しました。もう一度お試しください。",
 
   "general_reminder_update_now": "リストに確認する新しい項目がありますか？今すぐ更新してください！",
   "notification_example": "これは通知の例です！気に入りましたか？🙂",

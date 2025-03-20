@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 import '../../../data/repositories/locale_repository.dart';
 import '../../../i18n/generated/app_localizations.dart';
+import '../../../models/time_of_day_with_context.dart';
 import '../view_model/settings_view_model.dart';
 import 'date_format_setting.dart';
 import 'language_setting.dart';
@@ -20,9 +21,20 @@ class SettingsScreen extends StatefulWidget {
 
 class _SettingsScreenState extends State<SettingsScreen> {
   late String appVersion;
+
+  _updateRemindersText() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Future.microtask(() {
+        // ignore: use_build_context_synchronously
+        widget.viewModel.updateRemindersText.execute(context);
+      });
+    });
+  }
+
   @override
   void initState() {
     super.initState();
+    _updateRemindersText();
 
     context.read<LocaleRepository>().addListener(() {
       if (mounted) {
@@ -31,6 +43,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
             .then((appLocalizations) {
           widget.viewModel.resetScheduleNotifications.execute(appLocalizations);
         });
+
+        _updateRemindersText();
       }
     });
 
@@ -99,7 +113,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
                               if (result != null && mounted) {
                                 widget.viewModel.updateTimerReminder1
-                                    .execute(result);
+                                    .execute(TimeOfDayWithContext(
+                                        timeOfDay: result,
+                                        // ignore: use_build_context_synchronously
+                                        context: context));
                                 widget.viewModel.resetScheduleNotifications
                                     // ignore: use_build_context_synchronously
                                     .execute(AppLocalizations.of(context));
@@ -137,7 +154,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
                               if (result != null && mounted) {
                                 widget.viewModel.updateTimerReminder2
-                                    .execute(result);
+                                    .execute(TimeOfDayWithContext(
+                                        timeOfDay: result,
+                                        // ignore: use_build_context_synchronously
+                                        context: context));
                                 widget.viewModel.resetScheduleNotifications
                                     // ignore: use_build_context_synchronously
                                     .execute(AppLocalizations.of(context));
@@ -175,7 +195,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
                               if (result != null && mounted) {
                                 widget.viewModel.updateTimerReminder3
-                                    .execute(result);
+                                    .execute(TimeOfDayWithContext(
+                                        timeOfDay: result,
+                                        // ignore: use_build_context_synchronously
+                                        context: context));
                                 widget.viewModel.resetScheduleNotifications
                                     // ignore: use_build_context_synchronously
                                     .execute(AppLocalizations.of(context));

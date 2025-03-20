@@ -28,12 +28,13 @@
 
   "add_activity": "Aktivität hinzufügen",
   "add": "Hinzu",
-  "enter_your_activity_description": "Geben Sie hier Ihre Aktivitätsbeschreibung ein",
+  "activity_description": "Aktivitätsbeschreibung",
   "description_required": "Die Beschreibung ist erforderlich",
   "already_did_it_today": "Heute schon gemacht",
   "discard": "Verwerfen",
   "confirm": "Bestätigen",
   "not_checked": "Nicht geprüft",
+  "an_error_has_occurred": "Ein Fehler ist aufgetreten, bitte versuche es erneut.",
 
   "general_reminder_update_now": "Haben Sie etwas Neues auf Ihrer Liste zu überprüfen? Jetzt aktualisieren!",
   "notification_example": "Dies ist ein Beispiel für eine Benachrichtigung! Hat es Ihnen gefallen? 🙂",

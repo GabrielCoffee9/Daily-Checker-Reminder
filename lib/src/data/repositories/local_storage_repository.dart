@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-import '../../models/item.dart';
+import '../../models/activity.dart';
 
 class LocalStorageRepository {
   late final FlutterSecureStorage storage;
@@ -14,7 +14,7 @@ class LocalStorageRepository {
         aOptions: const AndroidOptions(encryptedSharedPreferences: true));
   }
 
-  Future<void> saveItems(List<Item> items) async {
+  Future<void> saveActivities(List<Activity> items) async {
     final json = items.map((item) => item.toJson()).toList();
     await storage.write(key: 'items', value: jsonEncode(json));
 
@@ -26,12 +26,12 @@ class LocalStorageRepository {
         value: jsonEncode(json));
   }
 
-  Future<List<Item>> loadItems() async {
+  Future<List<Activity>> loadActivities() async {
     final json = await storage.read(key: 'items');
     if (json == null) return [];
     final itemsList = jsonDecode(json) as List<dynamic>;
 
-    var result = itemsList.map((item) => Item.fromJson(item)).toList();
+    var result = itemsList.map((item) => Activity.fromJson(item)).toList();
 
     for (var item in result) {
       if (item.checked && item.doneTime != null) {
@@ -48,7 +48,7 @@ class LocalStorageRepository {
     return result;
   }
 
-  Future<List<Item>> loadActivitiesFromDate(DateTime date) async {
+  Future<List<Activity>> loadActivitiesFromDate(DateTime date) async {
     final rightDate = DateTime(date.year, date.month, date.day);
 
     final json = await storage.read(
@@ -58,7 +58,7 @@ class LocalStorageRepository {
 
     final itemsList = jsonDecode(json) as List<dynamic>;
 
-    return itemsList.map((item) => Item.fromJson(item)).toList();
+    return itemsList.map((item) => Activity.fromJson(item)).toList();
   }
 
   void saveReminder(String reminderName, TimeOfDay time) async {

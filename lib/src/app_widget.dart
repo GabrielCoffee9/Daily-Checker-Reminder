@@ -10,7 +10,7 @@ import 'i18n/generated/app_localizations.dart';
 import 'ui/calendar/view_model/calendar_view_model.dart';
 import 'ui/calendar/widgets/calendar_screen.dart';
 import 'ui/home/view_model/home_view_model.dart';
-import 'ui/home/widgets/add_item_dialog.dart';
+import 'ui/home/widgets/activity_dialog.dart';
 import 'ui/home/widgets/home_screen.dart';
 import 'ui/settings/view_model/settings_view_model.dart';
 import 'ui/settings/widgets/settings_screen.dart';
@@ -131,7 +131,7 @@ class _MediumAppState extends State<MediumApp> {
                     context,
                     MaterialPageRoute(
                       builder: (context) => SettingsScreen(
-                        viewModel: context.read(),
+                        viewModel: context.read<SettingsViewModel>(),
                       ),
                     ));
               },
@@ -170,22 +170,15 @@ class _MediumAppState extends State<MediumApp> {
           if (MediaQuery.sizeOf(context).height > 400) {
             showDialog(
               context: context,
-              builder: (context) => AddItemDialog(
-                onItemAdded: (item) async {
-                  context.read<HomeViewModel>().addItem.execute(item);
-                },
-              ),
+              builder: (context) =>
+                  ActivityDialog(viewModel: context.read<HomeViewModel>()),
             );
           } else {
             showModalBottomSheet(
               isScrollControlled: true,
               context: context,
               builder: (context) => SingleChildScrollView(
-                child: AddItemDialog(
-                  onItemAdded: (item) async {
-                    context.read<HomeViewModel>().addItem.execute(item);
-                  },
-                ),
+                child: ActivityDialog(viewModel: context.read<HomeViewModel>()),
               ),
             );
           }
@@ -243,11 +236,16 @@ class SmallApp extends StatelessWidget {
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             showDialog(
+              useRootNavigator: false,
+              barrierDismissible: false,
               context: context,
-              builder: (context) => AddItemDialog(
-                onItemAdded: (item) async {
-                  context.read<HomeViewModel>().addItem.execute(item);
-                },
+              builder: (context) => ScaffoldMessenger(
+                child: Scaffold(
+                  backgroundColor: Colors.transparent,
+                  body: ActivityDialog(
+                    viewModel: context.read<HomeViewModel>(),
+                  ),
+                ),
               ),
             );
           },

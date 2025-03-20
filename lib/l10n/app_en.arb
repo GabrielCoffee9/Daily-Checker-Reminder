@@ -28,12 +28,13 @@
 
   "add_activity": "Add activity",
   "add": "Add",
-  "enter_your_activity_description": "Enter your activity description here",
+  "activity_description": "Activity description",
   "description_required": "The description is required",
   "already_did_it_today": "Already did it today",
   "discard": "Discard",
   "confirm": "Confirm",
   "not_checked": "Not checked",
+  "an_error_has_occurred": "An error has occurred, please try again.",
 
   "general_reminder_update_now": "Have something new to check in your list? Update now!",
   "notification_example": "This is a notification example! Did you like it? 🙂",

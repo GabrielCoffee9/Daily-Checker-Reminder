@@ -28,12 +28,13 @@
 
   "add_activity": "Adicionar atividade",
   "add": "Add",
-  "enter_your_activity_description": "Insira a descrição da sua atividade aqui",
+  "activity_description": "Descrição da atividade",
   "description_required": "A descrição é obrigatória",
   "already_did_it_today": "Já fiz isso hoje",
   "discard": "Descartar",
   "confirm": "Confirmar",
   "not_checked": "Não verificado",
+  "an_error_has_occurred": "Ocorreu um erro, tente novamente.",
 
   "general_reminder_update_now": "Tem algo novo para verificar na sua lista? Atualize agora!",
   "notification_example": "Este é um exemplo de notificação! Gostou? 🙂",
