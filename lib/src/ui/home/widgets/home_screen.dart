@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 
 import '../../../data/repositories/date_format_repository.dart';
 import '../../../i18n/generated/app_localizations.dart';
-import '../../../models/activity.dart';
+import '../../../models/activity_log.dart';
 import '../view_model/home_view_model.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -84,13 +84,14 @@ class _HomeScreenState extends State<HomeScreen> {
                           shrinkWrap: true,
                           itemCount: widget.viewModel.activities.length,
                           itemBuilder: (context, index) {
-                            Activity activity =
+                            ActivityLog activity =
                                 widget.viewModel.activities[index];
 
                             return Dismissible(
                               key: UniqueKey(),
                               onDismissed: (direction) {
-                                widget.viewModel.removeActivity.execute(index);
+                                widget.viewModel.removeActivity
+                                    .execute(activity);
                               },
                               background: Container(
                                 color: Colors.red[400],
@@ -121,7 +122,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                     activity.doneTime = activity.checked
                                         ? DateTime.now()
                                         : null;
-                                    widget.viewModel.updateActivity.execute();
+                                    widget.viewModel.updateActivity
+                                        .execute(activity);
                                   });
                                 },
                               ),

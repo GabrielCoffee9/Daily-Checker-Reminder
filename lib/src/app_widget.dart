@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
+import 'data/repositories/activity_repository.dart';
 import 'data/repositories/date_format_repository.dart';
-import 'data/repositories/local_storage_repository.dart';
+import 'data/repositories/local_reminder_repository.dart';
 import 'data/repositories/locale_repository.dart';
 import 'data/repositories/theme_repository.dart';
 import 'i18n/generated/app_localizations.dart';
@@ -27,19 +28,20 @@ class _DailyCheckerReminderState extends State<DailyCheckerReminder> {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        Provider(create: (context) => LocalStorageRepository()),
+        Provider(create: (context) => LocalReminderRepository()),
+        Provider(create: (context) => ActivityRepository()),
         ChangeNotifierProvider(create: (context) => ThemeRepository()),
         ChangeNotifierProvider(create: (context) => LocaleRepository()),
         ChangeNotifierProvider(create: (context) => DateFormatRepository()),
         ChangeNotifierProvider(
             create: (context) =>
-                HomeViewModel(localStorageRepository: context.read())),
+                HomeViewModel(activityRepository: context.read())),
         ChangeNotifierProvider(
             create: (context) =>
-                CalendarViewModel(localStorageRepository: context.read())),
+                CalendarViewModel(activityRepository: context.read())),
         ChangeNotifierProvider(
             create: (context) =>
-                SettingsViewModel(localStorageRepository: context.read())),
+                SettingsViewModel(localReminderRepository: context.read())),
       ],
       child: Builder(builder: (context) {
         return MaterialApp(

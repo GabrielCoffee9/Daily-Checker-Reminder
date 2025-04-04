@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_command/flutter_command.dart';
 
-import '../../../data/repositories/local_storage_repository.dart';
+import '../../../data/repositories/local_reminder_repository.dart';
 import '../../../data/services/local_notifications.dart';
 import '../../../i18n/generated/app_localizations.dart';
 import '../../../models/time_of_day_with_context.dart';
 
 class SettingsViewModel extends ChangeNotifier {
-  SettingsViewModel({required LocalStorageRepository localStorageRepository})
-      : _localStorageRepository = localStorageRepository {
+  SettingsViewModel({required LocalReminderRepository localReminderRepository})
+      : _localReminderRepository = localReminderRepository {
     load = Command.createAsyncNoParamNoResult(_load)..execute();
 
     resetScheduleNotifications =
@@ -51,7 +51,7 @@ class SettingsViewModel extends ChangeNotifier {
 
   late Command<String, void> showSimpleNotification;
 
-  final LocalStorageRepository _localStorageRepository;
+  final LocalReminderRepository _localReminderRepository;
 
   late TimeOfDay _timeOfDay1;
   late TimeOfDay _timeOfDay2;
@@ -91,15 +91,15 @@ class SettingsViewModel extends ChangeNotifier {
 
   Future<void> _load() async {
     _timeOfDay1 =
-        await _localStorageRepository.loadReminder(firstReminderKey) ??
+        await _localReminderRepository.loadReminder(firstReminderKey) ??
             TimeOfDay.now();
 
     _timeOfDay2 =
-        await _localStorageRepository.loadReminder(secondReminderKey) ??
+        await _localReminderRepository.loadReminder(secondReminderKey) ??
             TimeOfDay.now();
 
     _timeOfDay3 =
-        await _localStorageRepository.loadReminder(thirdReminderKey) ??
+        await _localReminderRepository.loadReminder(thirdReminderKey) ??
             TimeOfDay.now();
 
     _time1Controller.text =
@@ -170,7 +170,7 @@ class SettingsViewModel extends ChangeNotifier {
 
     time1Controller.text = newTime.timeOfDay.format(newTime.context);
 
-    _localStorageRepository.saveReminder(firstReminderKey, _timeOfDay1);
+    _localReminderRepository.saveReminder(firstReminderKey, _timeOfDay1);
     notifyListeners();
   }
 
@@ -179,7 +179,7 @@ class SettingsViewModel extends ChangeNotifier {
 
     time2Controller.text = newTime.timeOfDay.format(newTime.context);
 
-    _localStorageRepository.saveReminder(secondReminderKey, _timeOfDay2);
+    _localReminderRepository.saveReminder(secondReminderKey, _timeOfDay2);
     notifyListeners();
   }
 
@@ -188,7 +188,7 @@ class SettingsViewModel extends ChangeNotifier {
 
     time3Controller.text = newTime.timeOfDay.format(newTime.context);
 
-    _localStorageRepository.saveReminder(thirdReminderKey, _timeOfDay3);
+    _localReminderRepository.saveReminder(thirdReminderKey, _timeOfDay3);
     notifyListeners();
   }
 
