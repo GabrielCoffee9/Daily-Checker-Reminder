@@ -1,19 +1,18 @@
 import 'dart:collection';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_command/flutter_command.dart';
 
-import '../../../data/repositories/local_storage_repository.dart';
-import '../../../models/activity.dart';
+import '../../../data/repositories/activity_repository.dart';
+import '../../../models/activity_log.dart';
 
 class HomeViewModel extends ChangeNotifier {
-  HomeViewModel({required LocalStorageRepository localStorageRepository})
-      : _localStorageRepository = localStorageRepository {
+  HomeViewModel({required ActivityRepository activityRepository})
+      : _activityRepository = activityRepository {
     load = Command.createAsyncNoParamNoResult(_load)..execute();
 
     saveActivity = Command.createAsyncNoParamNoResult(_saveActivity);
 
-    updateActivity = Command.createAsyncNoParamNoResult(_updateActivity);
+    updateActivity = Command.createAsyncNoResult(_updateActivity);
 
     removeActivity = Command.createAsyncNoResult(_removeActivity);
 
@@ -25,22 +24,24 @@ class HomeViewModel extends ChangeNotifier {
 
   late Command<void, void> saveActivity;
 
-  late Command<void, void> updateActivity;
-  late Command<int, void> removeActivity;
+  late Command<ActivityLog, void> updateActivity;
+  late Command<ActivityLog, void> removeActivity;
 
   late Command<void, void> clearNewActivityForm;
 
-  final LocalStorageRepository _localStorageRepository;
+  final ActivityRepository _activityRepository;
 
   final newActivityNameTextController = TextEditingController();
   bool newActivityChecked = false;
 
-  Activity get _tempActivity => Activity(
+  ActivityLog get _tempActivity => ActivityLog(
         name: newActivityNameTextController.text,
         checked: newActivityChecked,
+        createdAt: ActivityRepository.getCorrectDay(),
+        doneTime: newActivityChecked ? DateTime.now() : null,
       );
 
-  List<Activity> _activities = [];
+  List<ActivityLog> _activities = [];
 
   UnmodifiableListView get activities => UnmodifiableListView(_activities);
 
@@ -48,31 +49,37 @@ class HomeViewModel extends ChangeNotifier {
       _activities.where((item) => item.checked == true).length;
 
   Future<void> _load() async {
-    _activities = await _localStorageRepository.loadActivities();
+    if (!_activityRepository.isOpen()) {
+      await _activityRepository.open();
+    }
+    _activities = await _activityRepository.getTodayActivities();
+
     notifyListeners();
   }
 
   Future<void> _saveActivity() async {
-    Activity newActivity = _tempActivity;
+    ActivityLog newActivity = _tempActivity;
     try {
+      newActivity = await _activityRepository.insert(newActivity);
       _activities.add(newActivity);
-      await _localStorageRepository.saveActivities(_activities);
     } catch (e) {
-      _activities.remove(newActivity);
       throw Exception();
     } finally {
       notifyListeners();
     }
   }
 
-  Future<void> _updateActivity() async {
-    await _localStorageRepository.saveActivities(_activities);
+  Future<void> _updateActivity(ActivityLog activity) async {
+    await _activityRepository.update(activity);
     notifyListeners();
   }
 
-  Future<void> _removeActivity(int index) async {
-    _activities.removeAt(index);
-    await _localStorageRepository.saveActivities(_activities);
+  Future<void> _removeActivity(ActivityLog activity) async {
+    if (activity.id == null) {
+      throw Exception('Activity doesnt have a Id');
+    }
+    await _activityRepository.delete(activity);
+    _activities.remove(activity);
     notifyListeners();
   }
 

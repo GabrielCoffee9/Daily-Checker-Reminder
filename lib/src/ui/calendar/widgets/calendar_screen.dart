@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 import '../../../i18n/generated/app_localizations.dart';
-import '../../../models/activity.dart';
+import '../../../models/activity_log.dart';
 import '../../../data/repositories/date_format_repository.dart';
 import '../view_model/calendar_view_model.dart';
 
@@ -86,7 +86,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                   shrinkWrap: true,
                   itemCount: widget.viewModel.items.length,
                   itemBuilder: (context, index) {
-                    Activity item = widget.viewModel.items[index];
+                    ActivityLog item = widget.viewModel.items[index];
 
                     return CheckboxListTile(
                       value: item.checked,
